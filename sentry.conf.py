@@ -21,12 +21,12 @@ DATABASES = {'default': dj_database_url.config()}
 # You'll need to install the required dependencies for Memcached:
 #   pip install python-memcached
 #
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': [os.environ['MEMCACHE_SERVERS']],
-    }
-}
+# CACHES = {
+    # 'default': {
+        # 'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        # 'LOCATION': [os.environ['MEMCACHE_SERVERS']],
+    # }
+# }
 
 ###########
 ## Queue ##
