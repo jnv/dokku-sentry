@@ -106,32 +106,31 @@ SERVER_EMAIL = ''
 
 # If this file ever becomes compromised, it's important to regenerate your SECRET_KEY
 # Changing this value will result in all current sessions being invalidated
-SECRET_KEY = ''
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# http://twitter.com/apps/new
-# It's important that input a callback URL, even if its useless. We have no idea why, consult Twitter.
-TWITTER_CONSUMER_KEY = ''
-TWITTER_CONSUMER_SECRET = ''
+SENTRY_ALLOW_REGISTRATION = 'SENTRY_ALLOW_REGISTRATION' in os.environ
 
-# http://developers.facebook.com/setup/
-FACEBOOK_APP_ID = ''
-FACEBOOK_API_SECRET = ''
-
-# http://code.google.com/apis/accounts/docs/OAuth2.html#Registering
-GOOGLE_OAUTH2_CLIENT_ID = ''
-GOOGLE_OAUTH2_CLIENT_SECRET = ''
-
-# https://github.com/settings/applications/new
-GITHUB_APP_ID = ''
-GITHUB_API_SECRET = ''
-
-# https://trello.com/1/appKey/generate
-TRELLO_API_KEY = ''
-TRELLO_API_SECRET = ''
-
-# https://confluence.atlassian.com/display/BITBUCKET/OAuth+Consumers
-BITBUCKET_CONSUMER_KEY = ''
-BITBUCKET_CONSUMER_SECRET = ''
-
-SOCIAL_AUTH_CREATE_USERS = False
-SENTRY_ALLOW_REGISTRATION = False
+# Social Auth
+# -----------
+SOCIAL_AUTH_CREATE_USERS = 'SOCIAL_AUTH_CREATE_USERS' in os.environ
+# Twitter
+# -------
+TWITTER_CONSUMER_KEY = os.environ.get('TWITTER_CONSUMER_KEY')
+TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_CONSUMER_SECRET')
+# Facebook
+# --------
+FACEBOOK_APP_ID = os.environ.get('FACEBOOK_APP_ID')
+FACEBOOK_API_SECRET = os.environ.get('FACEBOOK_API_SECRET')
+# Google
+# ------
+GOOGLE_OAUTH2_CLIENT_ID = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
+GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
+# GitHub
+# ------
+GITHUB_APP_ID = os.environ.get('GITHUB_APP_ID')
+GITHUB_API_SECRET = os.environ.get('GITHUB_API_SECRET')
+GITHUB_EXTENDED_PERMISSIONS = ['repo']
+# Bitbucket
+# ---------
+BITBUCKET_CONSUMER_KEY = os.environ.get('BITBUCKET_CONSUMER_KEY')
+BITBUCKET_CONSUMER_SECRET = os.environ.get('BITBUCKET_CONSUMER_SECRET')
