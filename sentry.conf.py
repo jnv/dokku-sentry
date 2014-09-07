@@ -22,10 +22,10 @@ DATABASES = {'default': dj_database_url.config()}
 #   pip install python-memcached
 #
 # CACHES = {
-    # 'default': {
-        # 'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        # 'LOCATION': [os.environ['MEMCACHE_SERVERS']],
-    # }
+#     'default': {
+#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': [os.environ['MEMCACHE_SERVERS']],
+#     }
 # }
 
 ###########
@@ -67,7 +67,7 @@ SENTRY_REDIS_OPTIONS = {
 ################
 
 # You MUST configure the absolute URI root for Sentry:
-SENTRY_URL_PREFIX = 'https://sentry.example.com'  # No trailing slash!
+SENTRY_URL_PREFIX = os.environ.get('SENTRY_URL_PREFIX', '')  # No trailing slash!
 
 # If you're using a reverse proxy, you should enable the X-Forwarded-Proto
 # and X-Forwarded-Host headers, and uncomment the following settings
