@@ -8,8 +8,26 @@ import urlparse
 import os
 
 CONF_ROOT = os.path.dirname(__file__)
-url = urlparse.urlparse(os.environ.get('REDIS_URL'))
 DATABASES = {'default': dj_database_url.config()}
+
+
+############
+## SENTRY ##
+############
+
+# If this file ever becomes compromised, it's important to regenerate your SECRET_KEY
+# Changing this value will result in all current sessions being invalidated
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+# Should Sentry allow users to create new accounts?
+# Defaults to True (can register).
+registration = os.environ.get('SENTRY_ALLOW_REGISTRATION', 'True')
+SENTRY_ALLOW_REGISTRATION = (registration == 'True')
+
+# Should Sentry make all data publicly accessible?
+# This should only be used if you’re installing Sentry behind your company’s firewall.
+# Defaults to False
+SENTRY_PUBLIC = 'SENTRY_PUBLIC' in os.environ
 
 # If you're expecting any kind of real traffic on Sentry, we highly recommend
 # configuring the CACHES and Redis settings
@@ -52,12 +70,13 @@ DATABASES = {'default': dj_database_url.config()}
 # You'll need to install the required dependencies for Redis buffers:
 #   pip install redis hiredis nydus
 #
+redis_url = urlparse.urlparse(os.environ.get('REDIS_URL'))
 SENTRY_BUFFER = 'sentry.buffer.redis.RedisBuffer'
 SENTRY_REDIS_OPTIONS = {
     'hosts': {
         0: {
-            'host': url.hostname,
-            'port': url.port,
+            'host': redis_url.hostname,
+            'port': redis_url.port,
         }
     }
 }
@@ -103,12 +122,6 @@ SERVER_EMAIL = ''
 ###########
 ## etc. ##
 ###########
-
-# If this file ever becomes compromised, it's important to regenerate your SECRET_KEY
-# Changing this value will result in all current sessions being invalidated
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
-SENTRY_ALLOW_REGISTRATION = 'SENTRY_ALLOW_REGISTRATION' in os.environ
 
 # Social Auth
 # -----------
