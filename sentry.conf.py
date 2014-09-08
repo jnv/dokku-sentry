@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 # This file is just Python, with a touch of Django which means you
 # you can inherit and tweak settings to your hearts content.
 from sentry.conf.server import *
