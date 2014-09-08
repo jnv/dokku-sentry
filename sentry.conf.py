@@ -29,6 +29,9 @@ SENTRY_ALLOW_REGISTRATION = (registration == 'True')
 # Defaults to False
 SENTRY_PUBLIC = 'SENTRY_PUBLIC' in os.environ
 
+# Set Sentry's ADMINS to a raw list of email addresses
+SENTRY_ADMINS = os.environ.get('ADMINS', '').split(',')
+
 # If you're expecting any kind of real traffic on Sentry, we highly recommend
 # configuring the CACHES and Redis settings
 
